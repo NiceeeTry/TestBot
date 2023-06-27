@@ -22,12 +22,12 @@ def get_weather(message):
     if res.status_code == 200:
         data = json.loads(res.text) 
         temp = data["main"]["temp"]
-        bot.reply_to(message, data)
-        # bot.reply_to(message, f'Сейчас погода: {temp}')
+        # bot.reply_to(message, data)
+        bot.reply_to(message, f'Сейчас погода: {temp}')
 
-        image = 'sunny.png' if temp > 5.0 else 'sun.png'
+        image = 'sunny.png' if temp > 5.0 else 'sun.jpg'
         file = open("./static/"+image,'rb')
-        bot.sent_photo(message.chat.id,file)
+        bot.send_photo(message.chat.id,file)
     else:
         bot.reply_to(message, 'Город указан не верно')
     
